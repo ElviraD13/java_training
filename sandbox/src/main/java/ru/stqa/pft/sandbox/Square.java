@@ -5,5 +5,8 @@ public class Square {
   public Square(int l){
     this.l = l;
   }
+  public double area(){
+    return this.l * this.l;
+  }
 
 }
