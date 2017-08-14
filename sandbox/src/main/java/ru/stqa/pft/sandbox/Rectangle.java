@@ -1,0 +1,10 @@
+package ru.stqa.pft.sandbox;
+
+public class Rectangle {
+  public int a;
+  public int b;
+  public Rectangle(int a, int b){
+    this.a = a;
+    this.b = b;
+  }
+}
