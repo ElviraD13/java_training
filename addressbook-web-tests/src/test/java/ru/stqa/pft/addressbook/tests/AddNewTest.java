@@ -7,10 +7,10 @@ public class AddNewTest extends TestBase {
 
   @Test
   public void addNewContact() {
-    app.gotoAddNewPage();
-    app.fillNewContactForm(new NewContactData("Fname", "Mname", "Lname", "Nname", "ooo\"company\"", "Email@gmail.com", "5-555-555"));
-    app.enterNewContact();
-    app.returnToHomePage();
+    app.getContactHelper().gotoAddNewPage();
+    app.getContactHelper().fillNewContactForm(new NewContactData("Fname", "Mname", "Lname", "Nname", "ooo\"company\"", "Email@gmail.com", "5-555-555"));
+    app.getContactHelper().enterNewContact();
+    app.getNavigationHelper().returnToHomePage();
   }
 
 }
