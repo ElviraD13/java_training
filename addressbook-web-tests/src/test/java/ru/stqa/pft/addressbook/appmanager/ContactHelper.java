@@ -28,4 +28,20 @@ public class ContactHelper extends HelperBase{
   public void gotoAddNewPage() {
     click(By.linkText("add new"));
   }
+
+  public void selectContact() {
+    click(By.xpath(".//tr[@name='entry'][1]/td[@class='center']/input"));
+    }
+
+  private boolean isSelected(By id) {
+    return wd.findElement(id).isSelected();
+  }
+
+  public void deleteContact() {
+    click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
+    wd.switchTo().alert().accept();
+  }
 }
+
+
+
