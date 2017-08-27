@@ -26,20 +26,36 @@ public class ContactHelper extends HelperBase{
   }
 
   public void gotoAddNewPage() {
+
     click(By.linkText("add new"));
   }
 
   public void selectContact() {
+
     click(By.xpath(".//tr[@name='entry'][1]/td[@class='center']/input"));
     }
-
-  private boolean isSelected(By id) {
-    return wd.findElement(id).isSelected();
-  }
 
   public void deleteContact() {
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
     wd.switchTo().alert().accept();
+  }
+
+  public void selectGroupToAdd() {
+    click(By.xpath("//div/div[4]/form[2]/div[4]/select/option[3]"));
+  }
+
+  public void addContactToGroup() {
+
+    click(By.name("add"));
+  }
+
+  public void goToNewGroupPage() {
+    click(By.xpath("//div/div[4]/div/i/a"));
+  }
+
+  public void selectAllGroupShown() {
+
+    click(By.xpath("//form[@id='right']/select//option[2]"));
   }
 }
 

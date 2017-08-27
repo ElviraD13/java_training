@@ -1,9 +1,7 @@
 package ru.stqa.pft.addressbook.appmanager;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import ru.stqa.pft.addressbook.model.NewContactData;
 
 import java.util.concurrent.TimeUnit;
 
@@ -31,14 +29,17 @@ public class ApplicationManager {
   }
 
   public GroupsHelper getGroupsHelper() {
+
     return groupsHelper;
   }
 
   public NavigationHelper getNavigationHelper() {
+
     return navigationHelper;
   }
 
   public ContactHelper getContactHelper() {
+
     return contactHelper;
   }
 }
