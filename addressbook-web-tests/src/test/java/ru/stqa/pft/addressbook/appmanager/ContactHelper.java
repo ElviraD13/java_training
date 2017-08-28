@@ -57,6 +57,14 @@ public class ContactHelper extends HelperBase{
 
     click(By.xpath("//form[@id='right']/select//option[2]"));
   }
+
+  public void submitContactModification() {
+    click(By.name("update"));
+  }
+
+  public void selectContactToEdit() {
+    click(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[8]/a/img"));
+  }
 }
 
 
