@@ -57,6 +57,7 @@ public class NewContactData {
   }
 
   public String getGroup() {
+
     return group;
   }
 }

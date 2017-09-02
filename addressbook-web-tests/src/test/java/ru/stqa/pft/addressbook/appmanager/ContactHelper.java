@@ -1,9 +1,7 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.NewContactData;
@@ -52,7 +50,7 @@ public class ContactHelper extends HelperBase{
   }
 
   public void selectGroupToAdd() {
-    click(By.xpath("//div/div[4]/form[2]/div[4]/select/option[3]"));
+    click(By.xpath("//div/div[4]/form[2]/div[4]/select/option[1]"));
   }
 
   public void addContactToGroup() {
@@ -70,11 +68,30 @@ public class ContactHelper extends HelperBase{
   }
 
   public void submitContactModification() {
+
     click(By.name("update"));
   }
 
   public void selectContactToEdit() {
+
     click(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[8]/a/img"));
+  }
+
+  public void createContact(NewContactData Contact, boolean b) {
+    gotoAddNewPage();
+    fillNewContactForm(Contact, b);
+    enterNewContact();
+    }
+
+  public boolean isThereAnyContact() {
+    return isElementPresent(By.xpath(".//tr[@name='entry'][1]/td[@class='center']/input"));
+  }
+
+  public void addFirstContact(NewContactData contact, boolean b) {
+    if (! isThereAnyContact()){
+      createContact(contact, b);
+    }
+
   }
 }
 
