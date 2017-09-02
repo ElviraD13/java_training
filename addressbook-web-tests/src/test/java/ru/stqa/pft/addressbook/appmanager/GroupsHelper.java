@@ -59,4 +59,9 @@ public class GroupsHelper extends HelperBase{
      return isElementPresent(By.name("selected[]"));
   }
 
+  public void addFirstGroup() {
+    if (! isThereAGroup()){
+      createGroup(new GroupData("newGroup",null, null ));
+    }
+  }
 }
