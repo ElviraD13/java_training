@@ -15,6 +15,7 @@ public class AddContactTest extends TestBase {
   public void addNewContact() {
     app.getNavigationHelper().gotoGroupPage();
     app.getGroupsHelper().addFirstGroup(new GroupData("newGroup", null, null));
+    app.getNavigationHelper().returnToHomePage();
     List<ContactData> before = app.getContactHelper().getContactList();
     ContactData contact = new ContactData("fName", "mName", "lNname", "nName", "ooo", "Email@com", "8-111-111", "newGroup");
     app.getNavigationHelper().returnToHomePage();
