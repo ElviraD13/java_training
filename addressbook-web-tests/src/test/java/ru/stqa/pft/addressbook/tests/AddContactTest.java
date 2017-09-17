@@ -20,7 +20,9 @@ public class AddContactTest extends TestBase {
   @Test
   public void addNewContact() {
     List<ContactData> before = app.contact().list();
-    ContactData contact = new ContactData("fName", "mName", "lNname", "nName", "ooo", "Email@com", "8-111-111", "newGroup");
+    ContactData contact = new ContactData()
+            .withFirstname("fName").withMiddlename("mName").withLastname("lNname").withNickname("nName").withCompany("ooo")
+            .withEmail("Email@com").withHomeTelephone("8-111-111").withGroup("newGroup");
     app.goTo().homePage();
     app.contact().create(contact, true);
     app.goTo().homePage();

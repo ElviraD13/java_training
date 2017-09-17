@@ -15,7 +15,9 @@ public class ContactDeletionTest extends TestBase{
     app.goTo().groupPage();
     app.group().addFirstGroup(new GroupData().withName("newGroup"));
     app.goTo().homePage();
-    app.contact().addFirstContact(new ContactData("Fname", "Mname", "Lname", "Nname", "ooo\"company\"", "Email@gmail.com", "5-555-555", "newGroup"), true);
+    app.contact().addFirstContact(new ContactData()
+            .withFirstname("Fname").withMiddlename("Mname").withLastname("Lname").withNickname("Nname").withCompany("ooo\"company\"")
+            .withEmail("Email@gmail.com").withHomeTelephone("5-555-555").withGroup("newGroup"), true);
     app.goTo().homePage();
   }
 
