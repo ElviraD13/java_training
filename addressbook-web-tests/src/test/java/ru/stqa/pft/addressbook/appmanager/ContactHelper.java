@@ -19,7 +19,7 @@ public class ContactHelper extends HelperBase{
 
   public void enterNewContact() {
 
-    click(By.xpath("//div[@id='content']/form/input[21]"));
+    click(By.name("submit"));
   }
 
   public void fillNewContactForm(ContactData newContactData, boolean creation) {
