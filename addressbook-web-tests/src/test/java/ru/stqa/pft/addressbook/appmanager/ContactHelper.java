@@ -8,7 +8,6 @@ import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class ContactHelper extends HelperBase{
@@ -62,7 +61,7 @@ public class ContactHelper extends HelperBase{
     wd.findElements(By.xpath("//td[8]/a/img")).get(index).click();
      }
 
-  public void createContact(ContactData Contact, boolean b) {
+  public void create(ContactData Contact, boolean b) {
     gotoAddNewPage();
     fillNewContactForm(Contact, b);
     enterNewContact();
@@ -74,16 +73,16 @@ public class ContactHelper extends HelperBase{
 
   public void addFirstContact(ContactData contact, boolean b) {
     if (! isThereAnyContact()){
-      createContact(contact, b);
+      create(contact, b);
     }
 
   }
 
-  public int getContactCount() {
-   return wd.findElements(By.name("selected[]")).size();
-  }
+ // public int getContactCount() {
+ //  return wd.findElements(By.name("selected[]")).size();
+ // }
 
-  public List<ContactData> getContactList() {
+  public List<ContactData> list() {
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> elements = wd.findElements(By.xpath(".//tr[@name='entry']"));
           for (WebElement element : elements){

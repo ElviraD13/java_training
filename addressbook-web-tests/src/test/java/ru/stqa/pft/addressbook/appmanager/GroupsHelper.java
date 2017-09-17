@@ -14,7 +14,7 @@ public class GroupsHelper extends HelperBase {
     super(wd);
   }
 
-  public void returnToGroupPage() {
+  public void returnToPage() {
     click(By.linkText("group page"));
   }
 
@@ -53,34 +53,46 @@ public class GroupsHelper extends HelperBase {
     click(By.name("update"));
   }
 
-  public void createGroup(GroupData group) {
+  public void create(GroupData group) {
     initGroupCreation();
     fillGroupForm(group);
     submitGroupCreation();
   }
-
-  public boolean isThereAGroup() {
-    return isElementPresent(By.name("selected[]"));
+  public void modify(int index, GroupData group) {
+    selectGroup(index);
+    initGroupModification();
+    fillGroupForm(group);
+    submitGroupModification();
+    returnToPage();
+  }
+  public void delete(int index) {
+    selectGroup(index);
+    deleteSelectedGroup();
+    returnToPage();
   }
 
+
+ // public boolean isThereAGroup() {
+ //   return isElementPresent(By.name("selected[]"));
+ // }
+
   public void addFirstGroup(GroupData group) {
-    if (!isThereAGroup()) {
-      createGroup(group);
+    if (list().size() == 0) {
+      create(group);
     }
   }
 
-  public int getGroupCount() {
-    return wd.findElements(By.name("selected[]")).size();
-  }
+ // public int getGroupCount() {
+ //   return wd.findElements(By.name("selected[]")).size();
+ // }
 
-  public List<GroupData> getGroupList() {
+  public List<GroupData> list() {
     List<GroupData> groups = new ArrayList<GroupData>();
     List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
     for (WebElement element : elements) {
       String name = element.getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      GroupData group = new GroupData(name, null, null);
-      groups.add(group);
+      groups.add(new GroupData().withId(id).withName(name));
     }
     return groups;
   }
