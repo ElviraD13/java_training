@@ -14,21 +14,22 @@ public class ContactDeletionTest extends TestBase{
   public void ensurePreconditions(){
     app.goTo().groupPage();
     app.group().addFirstGroup(new GroupData().withName("newGroup"));
-    app.goTo().HomePage();
+    app.goTo().homePage();
     app.contact().addFirstContact(new ContactData("Fname", "Mname", "Lname", "Nname", "ooo\"company\"", "Email@gmail.com", "5-555-555", "newGroup"), true);
-    app.goTo().HomePage();
+    app.goTo().homePage();
   }
 
   @Test
   public void deleteContactTest() {
     List<ContactData> before = app.contact().list();
-    app.contact().selectContact(before.size() - 1);
-    app.contact().deleteContact();
-    app.goTo().HomePage();
+    int index = before.size() - 1;
+    app.contact().delete(index);
+    app.goTo().homePage();
     List<ContactData> after = app.contact().list();
     Assert.assertEquals(after.size(),before.size() - 1);
 
-    before.remove(before.size() - 1);
+    before.remove(index);
     Assert.assertEquals(before,after);
   }
+
 }

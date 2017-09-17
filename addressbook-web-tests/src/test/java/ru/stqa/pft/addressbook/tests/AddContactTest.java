@@ -14,16 +14,16 @@ public class AddContactTest extends TestBase {
   public void ensurePreconditions(){
     app.goTo().groupPage();
     app.group().addFirstGroup(new GroupData().withName("newGroup"));
-    app.goTo().HomePage();
+    app.goTo().homePage();
   }
 
   @Test
   public void addNewContact() {
     List<ContactData> before = app.contact().list();
     ContactData contact = new ContactData("fName", "mName", "lNname", "nName", "ooo", "Email@com", "8-111-111", "newGroup");
-    app.goTo().HomePage();
+    app.goTo().homePage();
     app.contact().create(contact, true);
-    app.goTo().HomePage();
+    app.goTo().homePage();
     List<ContactData> after = app.contact().list();
     Assert.assertEquals(after.size(),before.size() + 1);
 
