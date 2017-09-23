@@ -22,7 +22,7 @@ public class AddContactTest extends TestBase {
     Contacts before = app.contact().all();
     ContactData contact = new ContactData()
             .withFirstname("fName").withMiddlename("mName").withLastname("lNname").withNickname("nName").withCompany("ooo")
-            .withEmail("Email@com").withHomeTelephone("8-111-111").withGroup("newGroup");
+            .withEmail("Email@com").withHomePhone("8-111-111").withGroup("newGroup");
     app.goTo().homePage();
     app.contact().create(contact, true);
     app.goTo().homePage();
