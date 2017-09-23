@@ -7,6 +7,7 @@ public class ContactData {
   private String lastname;
   private String nickname;
   private String company;
+  private String address;
   private String email;
   private String email2;
   private String email3;
@@ -26,6 +27,8 @@ public class ContactData {
   public String getNickname() { return nickname; }
 
   public String getCompany() { return company; }
+
+  public String getAddress() { return address; }
 
   public String getEmail() { return email; }
 
@@ -78,6 +81,11 @@ public class ContactData {
 
   public ContactData withCompany(String company) {
     this.company = company;
+    return this;
+  }
+
+  public ContactData withAddress(String address) {
+    this.address = address;
     return this;
   }
 

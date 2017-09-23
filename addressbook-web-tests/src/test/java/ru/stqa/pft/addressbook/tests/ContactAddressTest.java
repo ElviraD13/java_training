@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class ContactEmailTest extends TestBase{
+public class ContactAddressTest extends TestBase{
 
   @BeforeMethod
   public void ensurePreconditions(){
@@ -20,25 +20,23 @@ public class ContactEmailTest extends TestBase{
     app.goTo().homePage();
     app.contact().addFirstContact(new ContactData()
             .withFirstname("Fname").withMiddlename("Mname").withLastname("Lname").withNickname("Nname").withCompany("ooo\"company\"")
-            .withEmail("Email@mail.com").withEmail2("Email2@mail.com").withEmail3("Email3@mail.com")
+            .withAddress("Country").withEmail("Email@mail.com").withEmail2("Email2@mail.com").withEmail3("Email3@mail.com")
             .withHomePhone("5-55-55").withMobilePhone("333").withWorkPhone("7(222)").withGroup("newGroup"), true);
     app.goTo().homePage();
   }
 
   @Test
-  public void testContactEmails(){
+  public void testContactAddress(){
     app.goTo().homePage();
     ContactData contact = app.contact().all().iterator().next();
     ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
 
-    assertThat(contact.getAllEmails(), equalTo(mergeEmails(contactInfoFromEditForm)));
+    assertThat(contact.getAddress(), equalTo(mergeAddress(contactInfoFromEditForm)));
   }
-
-  private String mergeEmails(ContactData contact) {
-    return Arrays.asList(contact.getEmail(), contact.getEmail2(), contact.getEmail3())
-            .stream().filter((s) -> ! s.equals(""))
-            .collect(Collectors.joining("\n"));
+  private String mergeAddress(ContactData contact) {
+    return Arrays.asList(contact.getAddress())
+            .stream().collect(Collectors.joining("\n"));
   }
-
 }
+
 
