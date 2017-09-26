@@ -69,9 +69,9 @@ public class ContactHelper extends HelperBase{
      wd.findElement(By.cssSelector("a[href='edit.php?id=" + id + "']")).click();
   }
 
-  public void create(ContactData Contact, boolean b) {
+  public void create(ContactData contact, boolean b) {
     gotoAddNewPage();
-    fillNewContactForm(Contact, b);
+    fillNewContactForm(contact, b);
     enterNewContact();
     }
 

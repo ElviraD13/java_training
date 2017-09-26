@@ -5,6 +5,9 @@ import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
 import ru.stqa.pft.addressbook.model.ContactData;
 
 import java.io.File;
@@ -15,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContactDataGenerator {
+  WebDriver wd;
 
   @Parameter(names = "-c", description = "Contact count")
   public int count;
@@ -52,7 +56,7 @@ public class ContactDataGenerator {
     for (int i=0; i<count;i++){
       contacts.add(new ContactData().withFirstname(String.format("fName %s",i)).withMiddlename(String.format("mName %s",i))
               .withNickname(String.format("nName %s",i)).withLastname(String.format("lName %s",i))
-              .withCompany(String.format("ooo %s",i)).withGroup(String.format("newGroup %s",i)));
+              .withCompany(String.format("ooo %s",i)).withGroup(String.format("test 1")));
     }
     return contacts;
   }
