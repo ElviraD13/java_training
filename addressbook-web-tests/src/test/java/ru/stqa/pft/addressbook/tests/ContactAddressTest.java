@@ -15,20 +15,24 @@ public class ContactAddressTest extends TestBase{
 
   @BeforeMethod
   public void ensurePreconditions(){
-    app.goTo().groupPage();
-    app.group().addFirstGroup(new GroupData().withName("newGroup"));
-    app.goTo().homePage();
-    app.contact().addFirstContact(new ContactData()
-            .withFirstname("Fname").withMiddlename("Mname").withLastname("Lname").withNickname("Nname").withCompany("ooo\"company\"")
-            .withAddress("Country").withEmail("Email@mail.com").withEmail2("Email2@mail.com").withEmail3("Email3@mail.com")
-            .withHomePhone("5-55-55").withMobilePhone("333").withWorkPhone("7(222)").withGroup("newGroup"), true);
-    app.goTo().homePage();
+    if (app.db().groups().size() == 0) {
+      app.goTo().groupPage();
+      app.group().create(new GroupData().withName("newGroup"));
+      app.goTo().homePage();
+    }
+    if (app.db().contacts().size()==0) {
+      app.contact().create(new ContactData()
+              .withFirstname("Fname").withMiddlename("Mname").withLastname("Lname").withNickname("Nname").withCompany("ooo\"company\"")
+              .withAddress("Country").withEmail("Email@mail.com").withEmail2("Email2@mail.com").withEmail3("Email3@mail.com")
+              .withHomePhone("5-55-55").withMobilePhone("333").withWorkPhone("7(222)").withGroup("newGroup"), true);
+      app.goTo().homePage();
+    }
   }
 
   @Test
   public void testContactAddress(){
     app.goTo().homePage();
-    ContactData contact = app.contact().all().iterator().next();
+    ContactData contact = app.db().contacts().iterator().next();
     ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
 
     assertThat(contact.getAddress(), equalTo(mergeAddress(contactInfoFromEditForm)));

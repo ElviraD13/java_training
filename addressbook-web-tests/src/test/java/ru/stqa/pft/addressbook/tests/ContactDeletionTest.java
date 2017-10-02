@@ -14,23 +14,27 @@ public class ContactDeletionTest extends TestBase{
 
   @BeforeMethod
   public void ensurePreconditions(){
-    app.goTo().groupPage();
-    app.group().addFirstGroup(new GroupData().withName("newGroup"));
-    app.goTo().homePage();
-    app.contact().addFirstContact(new ContactData()
-            .withFirstname("Fname").withMiddlename("Mname").withLastname("Lname").withNickname("Nname").withCompany("ooo\"company\"")
-            .withEmail("Email@gmail.com").withHomePhone("5-555-555").withGroup("newGroup"), true);
-    app.goTo().homePage();
+    if (app.db().groups().size() == 0) {
+      app.goTo().groupPage();
+      app.group().create(new GroupData().withName("newGroup"));
+      app.goTo().homePage();
+    }
+    if (app.db().contacts().size()==0){
+      app.contact().create(new ContactData()
+              .withFirstname("Fname").withMiddlename("Mname").withLastname("Lname").withNickname("Nname").withCompany("ooo\"company\"")
+              .withEmail("Email@gmail.com").withHomePhone("5-555-555").withGroup("newGroup"), true);
+      app.goTo().homePage();
+    }
   }
 
   @Test
   public void deleteContactTest() {
-    Contacts before = app.contact().all();
+    Contacts before = app.db().contacts();
     ContactData deletedContact = before.iterator().next();
     app.contact().delete(deletedContact);
     app.goTo().homePage();
     assertEquals(app.contact().count(),before.size() - 1);
-    Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
     assertThat(after, equalTo(before.without(deletedContact)));
   }
 

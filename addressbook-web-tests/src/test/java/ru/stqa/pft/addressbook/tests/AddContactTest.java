@@ -22,9 +22,11 @@ public class AddContactTest extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions() {
-    app.goTo().groupPage();
-    app.group().addFirstGroup(new GroupData().withName("test 1"));
-    app.goTo().homePage();
+    if (app.db().groups().size()==0){
+      app.goTo().groupPage();
+      app.group().create(new GroupData().withName("test 1"));
+      app.goTo().homePage();
+    }
   }
 
   @DataProvider
@@ -45,13 +47,13 @@ public class AddContactTest extends TestBase {
 
   @Test(dataProvider = "validContacts")
   public void addNewContact(ContactData contact) {
-    Contacts before = app.contact().all();
+    Contacts before = app.db().contacts();
     File photo = new File("src/test/resources/1_littl.jpg");
     app.goTo().homePage();
     app.contact().create(contact, true);
     app.goTo().homePage();
     assertThat(app.contact().count(), equalTo(before.size() + 1));
-    Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
     assertThat(after, equalTo(
             before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
   }

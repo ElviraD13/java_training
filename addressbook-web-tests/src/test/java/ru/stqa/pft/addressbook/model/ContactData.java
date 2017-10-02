@@ -186,8 +186,8 @@ public class ContactData {
   }
 
   public ContactData withPhoto(File photo) {
-    this.photo = photo.getPath();
-    return this;
+  this.photo = photo.getPath();
+  return this;
   }
 
   @Override
