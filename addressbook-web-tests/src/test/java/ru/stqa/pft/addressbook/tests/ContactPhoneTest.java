@@ -23,7 +23,7 @@ public class ContactPhoneTest extends TestBase {
     if (app.db().contacts().size()==0) {
       app.contact().create(new ContactData()
               .withFirstname("Fname").withMiddlename("Mname").withLastname("Lname").withNickname("Nname").withCompany("ooo\"company\"")
-              .withEmail("Email@gmail.com").withHomePhone("5-55-55").withMobilePhone("333").withWorkPhone("7(222)").withGroup("newGroup"), true);
+              .withEmail("Email@gmail.com").withHomePhone("5-55-55").withMobilePhone("333").withWorkPhone("7(222)")/*.withGroup("newGroup")*/, true);
       app.goTo().homePage();
     }
   }

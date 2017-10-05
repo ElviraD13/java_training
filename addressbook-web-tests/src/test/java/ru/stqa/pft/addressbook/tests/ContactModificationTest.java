@@ -21,7 +21,7 @@ public class ContactModificationTest extends TestBase {
     if (app.db().contacts().size()==0){
       app.contact().create(new ContactData()
               .withFirstname("Fname").withMiddlename("Mname").withLastname("Lname").withNickname("Nname").withCompany("ooo\"company\"")
-              .withEmail("Email@gmail.com").withHomePhone("5-555-555").withGroup("newGroup"), true);
+              .withEmail("Email@gmail.com").withHomePhone("5-555-555")/*.withGroup("newGroup")*/, true);
       app.goTo().homePage();
     }
   }

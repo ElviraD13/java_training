@@ -24,7 +24,7 @@ public class ContactEmailTest extends TestBase{
       app.contact().create(new ContactData()
               .withFirstname("Fname").withMiddlename("Mname").withLastname("Lname").withNickname("Nname").withCompany("ooo\"company\"")
               .withEmail("Email@mail.com").withEmail2("Email2@mail.com").withEmail3("Email3@mail.com")
-              .withHomePhone("5-55-55").withMobilePhone("333").withWorkPhone("7(222)").withGroup("newGroup"), true);
+              .withHomePhone("5-55-55").withMobilePhone("333").withWorkPhone("7(222)")/*.withGroup("newGroup")*/, true);
       app.goTo().homePage();
     }
   }
