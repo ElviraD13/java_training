@@ -146,6 +146,19 @@ public class ContactHelper extends HelperBase{
     List<WebElement> cells = row.findElements(By.tagName("td"));
     cells.get(7).findElement(By.tagName("a")).click();
   }
+
+  public void selectContact() {
+    click(By.xpath(".//tr[@name='entry'][1]/td[@class='center']/input"));
+  }
+
+  public void groupToAdd()  {
+    click(By.xpath("//div/div[4]/form[2]/div[4]/select/option[3]"));
+  }
+
+  public void addContactToGroup()  {
+    click(By.name("add"));
+  }
+
 }
 
 
