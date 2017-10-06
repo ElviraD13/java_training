@@ -7,6 +7,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.util.List;
 
@@ -156,9 +158,27 @@ public class ContactHelper extends HelperBase{
   }
 
   public void addContactToGroup()  {
+
     click(By.name("add"));
   }
 
+  public ContactData findContact(Contacts ct, Groups gp) {
+    for (ContactData contact : ct){
+      if (contact.getGroups().size() < gp.size())
+        return contact;
+    }
+    return null;
+  }
+
+  public GroupData groupToAddContact(ContactData ctToAdd, Groups gp) {
+    for (GroupData group : gp) {
+      if (!ctToAdd.getGroups().contains(group)) {
+        return group;
+      }
+    }
+  return null;
+
+  }
 }
 
 

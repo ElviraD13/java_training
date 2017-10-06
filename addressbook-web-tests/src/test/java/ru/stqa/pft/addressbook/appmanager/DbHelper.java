@@ -16,7 +16,7 @@ public class DbHelper {
 
   private final SessionFactory sessionFactory;
 
-  public DbHelper(){
+  public DbHelper() {
     final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
             .configure()
             .build();
@@ -30,7 +30,8 @@ public class DbHelper {
     session.getTransaction().commit();
     session.close();
     return new Groups(result);
- }
+  }
+
   public Contacts contacts() {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
@@ -38,5 +39,15 @@ public class DbHelper {
     session.getTransaction().commit();
     session.close();
     return new Contacts(result);
+  }
+
+  public ContactData contact(int id) {
+    Session session = sessionFactory.openSession();
+    session.beginTransaction();
+    ContactData result = (ContactData) session.createQuery("from ContactData  where deprecated = '0000-00-00' and id=" + id).uniqueResult();
+    session.getTransaction().commit();
+    session.close();
+
+    return result;
   }
 }
